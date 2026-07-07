@@ -17,6 +17,31 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.gold { color: var(--gold) !important; }
+strong.gold { font-weight: 600; color: var(--gold); }
+
+/* ---------------------------------------------------------------
+   Scrollbar
+   --------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+html {
+  scrollbar-color: var(--gold) var(--black);
+  scrollbar-width: thin;
+}
+
 /* ---------------------------------------------------------------
    Reset
    --------------------------------------------------------------- */
@@ -101,7 +126,7 @@ p {
   display: block;
   height: 100%;
   width: 0;
-  background: var(--gray-mid);
+  background: var(--gold);
   animation: bar-fill 4.4s var(--ease) forwards;
   animation-delay: 0.6s;
 }
@@ -132,7 +157,7 @@ p {
 
 .rail__track {
   position: absolute;
-  left: 50%;
+  right: -8px;
   top: 0;
   bottom: 0;
   width: 1px;
@@ -752,7 +777,7 @@ p {
 .moodboard__divider {
   grid-column: 1 / -1;
   font-family: var(--serif);
-  font-size: 100px;
+  font-size: 160px;
   font-weight: 300;
   line-height: 1;
   letter-spacing: 0.05em;
@@ -763,8 +788,8 @@ p {
   pointer-events: none;
   position: relative;
   z-index: 0;
-  margin-top: -3rem;
-  margin-bottom: -3rem;
+  margin-top: -13rem;
+  margin-bottom: -13rem;
 }
 
 .plate {
@@ -1089,6 +1114,29 @@ p {
 .chapter--closing {
   align-items: center;
   text-align: center;
+  padding-bottom: 2vh;
+}
+
+.closing__watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 230px));
+  font-family: var(--serif);
+  font-size: 350px;
+  font-weight: 300;
+  color: #1a3a5c;
+  opacity: 0.07;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 0;
+  line-height: 1;
+}
+
+.chapter--closing .closing,
+.chapter--closing .closing__sign {
+  position: relative;
+  z-index: 1;
 }
 
 .closing {
@@ -1100,10 +1148,43 @@ p {
 
 .closing__sign {
   margin-top: 1.5rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gray-mid);
+}
+
+.closing__name {
+  color: var(--gold);
+}
+
+/* ---------------------------------------------------------------
+   Full-width footer image
+   --------------------------------------------------------------- */
+
+.footer-full {
+  width: 100%;
+  line-height: 0;
+  position: relative;
+  margin-top: -30vh;
+  z-index: 1;
+}
+
+.footer-full::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11,11,12,0) 20%, rgba(11,11,12,1) 80%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.footer-full img {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 1;
 }
 
 /* ---------------------------------------------------------------
