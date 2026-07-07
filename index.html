@@ -101,6 +101,18 @@
         Estamos desenhando um lugar onde<br>
         a engenharia se torna arte.
       </p>
+      <div class="word-carousel reveal-io" data-io>
+        <span>Silêncio</span>
+        <span>Precisão</span>
+        <span>Artesanato</span>
+        <span>Legado</span>
+        <span>Luxo</span>
+        <span>Eternidade</span>
+        <span>Espaço negativo</span>
+        <span>Luz</span>
+        <span>Material</span>
+        <span>Architecture</span>
+      </div>
     </section>
 
     <!-- ============================================
@@ -115,6 +127,10 @@
         </p>
         <p class="global-presence__subtext reveal-io" data-io>
           Desenvolvi um globo interativo através do clique para o usuário se sentir dentro de uma galeria de arte.
+        </p>
+        <p class="global-presence__dash reveal-io" data-io>
+          — Adhemar, imagine várias fotos suas com famosos, e com artes espalhadas ao redor do mundo, aqui nesse globo,
+          por favor clique em qualquer um dos quadrados para você sentir a experiência
         </p>
       </div>
     </section>
@@ -138,14 +154,16 @@
           <h2 class="heading reveal-io" data-io>A Visão</h2>
         </div>
         <div class="vision__body">
-          <p class="reveal-io" data-io>Adhemar não constrói automóveis ele constrói permanência, cada detalhe é
+          <p class="reveal-io" data-io>Pelo que estudei, Adhemar Cabral não constrói automóveis ele constrói
+            permanência, cada detalhe é
             construído com uma
             única
             razão: resistir ao tempo.</p>
           <p class="reveal-io" data-io>Esta não é uma história sobre automobilismo. É uma reflexão sobre o que permanece
             quando a velocidade deixa de existir.
             .</p>
-          <p class="reveal-io" data-io>O site que propomos não venderá. Ele exibirá.</p>
+          <p class="reveal-io" data-io>Adhemar, o site que estou propondo para você, não venderá, ele exibirá, é uma
+            nuance sútil, que apenas pessoas com sensibilidade estética perceberão.</p>
         </div>
         <ul class="vision__words reveal-io" data-io>
           <li>Silêncio</li>
@@ -169,7 +187,8 @@
       <div class="section-head">
         <p class="eyebrow reveal-io" data-io>IV — Moodboard</p>
         <h2 class="heading reveal-io" data-io>Moodboard</h2>
-        <p class="section-sub reveal-io" data-io>São apenas referencias, não reproduz o código final.</p>
+        <p class="section-sub reveal-io" data-io>São apenas referências, não reproduz o código final, é apenas um estudo
+          estético que posso trazer para sua marca.</p>
       </div>
       <div class="moodboard">
         <figure class="plate plate--a reveal-io" data-io>
@@ -180,6 +199,7 @@
           <img src="images/Adhemar Cabral photo.png" alt="Photo Styles">
           <figcaption>Plate 02 — Photo Styles</figcaption>
         </figure>
+        <div class="moodboard__divider" aria-hidden="true">A. CABRAL</div>
         <figure class="plate plate--c reveal-io" data-io>
           <img src="images/Clientes.png" alt="Museums">
           <figcaption>Plate 03 — Museums</figcaption>
@@ -425,7 +445,7 @@
         imageHeight: 0.42,
         imageRatio: 0.75,
         idleRotation: 0.0016,
-        cameraDistance: 5.2,
+        cameraDistance: 6.5,
         clickZoomDistance: 1.05
       };
 
@@ -434,7 +454,7 @@
       camera.position.set(0, 0, SETTINGS.cameraDistance);
 
       var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-      renderer.setClearColor(0x000000, 1);
+      renderer.setClearColor(0x0B0B0C, 1);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
       var controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -645,6 +665,16 @@
     } else {
       initGlobefolio();
     }
+  </script>
+
+  <audio id="bgMusic"
+    src="sound/Peaceful%20Ambient%20Background%20Music%20-%20This%20Fascinating%20world%20-%20CO.AG%20Music%20(youtube).mp3"
+    loop></audio>
+
+  <script>
+    var audio = document.getElementById('bgMusic');
+    audio.volume = 0.3;
+    audio.play().catch(function () { });
   </script>
 
   <script src="fluid-cursor.js"></script>
