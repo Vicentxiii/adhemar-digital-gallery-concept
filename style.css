@@ -9,6 +9,8 @@
   --gray-mid: #9A9A9A;
   --gray-light: #D7D7D7;
   --gold: #B08D57;
+  --text-paragraph: #C0BEBA;
+  --text-max-width: 700px;
 
   --serif: 'Fraunces', 'Georgia', serif;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -73,11 +75,24 @@ ul {
 
 p {
   margin: 0;
+  max-width: var(--text-max-width);
+  letter-spacing: 0.02em;
+  color: var(--text-paragraph);
 }
 
 *:focus-visible {
   outline: 1px solid var(--gold);
   outline-offset: 4px;
+}
+
+.text--offset-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.text--offset-left {
+  margin-right: auto;
+  margin-left: 0;
 }
 
 /* ---------------------------------------------------------------
@@ -271,25 +286,6 @@ p {
 .reveal-io {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 1.1s var(--ease), transform 1.1s var(--ease);
-}
-
-.reveal-io.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Staggered children within a revealed group */
-.vision__body p:nth-child(1) {
-  transition-delay: 0.05s;
-}
-
-.vision__body p:nth-child(2) {
-  transition-delay: 0.2s;
-}
-
-.vision__body p:nth-child(3) {
-  transition-delay: 0.35s;
 }
 
 /* ---------------------------------------------------------------
@@ -454,6 +450,8 @@ p {
   flex-direction: column;
   align-items: center;
   gap: 0.8rem;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .scroll-cue span {
@@ -517,10 +515,10 @@ p {
 .manifesto {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: clamp(1.6rem, 4.5vw, 3rem);
+  font-size: clamp(1.2rem, 3.5vw, 2rem);
   line-height: 1.4;
   color: var(--white);
-  max-width: 40ch;
+  max-width: var(--text-max-width);
 }
 
 .word-carousel {
@@ -643,8 +641,6 @@ p {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin: -0.5rem 0 0;
-  transition: opacity 1.4s var(--ease), transform 1.4s var(--ease);
-  transition-delay: 0.05s;
 }
 
 .global-presence__text {
@@ -653,12 +649,10 @@ p {
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   line-height: 1.8;
   color: var(--white);
-  max-width: 58ch;
+  max-width: var(--text-max-width);
   margin: 0;
   font-style: italic;
   opacity: 0.85;
-  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
-  transition-delay: 0.25s;
 }
 
 .global-presence__subtext {
@@ -667,12 +661,10 @@ p {
   font-size: clamp(0.75rem, 1.1vw, 0.9rem);
   line-height: 1.6;
   color: var(--gold);
-  max-width: 48ch;
+  max-width: var(--text-max-width);
   margin: -1rem 0 0;
   letter-spacing: 0.04em;
   opacity: 0.7;
-  transition: opacity 1.4s var(--ease), transform 1.4s var(--ease);
-  transition-delay: 0.45s;
 }
 
 .global-presence__dash {
@@ -682,10 +674,8 @@ p {
   font-size: clamp(0.8rem, 1.2vw, 1rem);
   line-height: 1.7;
   color: var(--gray-mid);
-  max-width: 58ch;
+  max-width: var(--text-max-width);
   margin: -2rem 0 0;
-  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
-  transition-delay: 0.6s;
 }
 
 @media (max-width: 767px) {
@@ -718,7 +708,7 @@ p {
 }
 
 .vision__body {
-  max-width: 640px;
+  max-width: var(--text-max-width);
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
@@ -730,6 +720,7 @@ p {
   font-size: clamp(1.1rem, 2.2vw, 1.4rem);
   line-height: 1.7;
   color: var(--gray-light);
+  max-width: var(--text-max-width);
 }
 
 .vision__words {
@@ -938,7 +929,7 @@ p {
 .specimen-caption {
   font-size: 0.85rem;
   color: var(--gray-mid);
-  max-width: 52ch;
+  max-width: var(--text-max-width);
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
@@ -1014,7 +1005,7 @@ p {
   font-size: 0.92rem;
   line-height: 1.6;
   color: var(--gray-mid);
-  max-width: 48ch;
+  max-width: var(--text-max-width);
 }
 
 /* ================================================================
@@ -1104,7 +1095,7 @@ p {
   margin-top: 0.4rem;
   font-size: 0.88rem;
   color: var(--gray-mid);
-  max-width: 48ch;
+  max-width: var(--text-max-width);
 }
 
 /* ================================================================
@@ -1142,8 +1133,9 @@ p {
 .closing {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: clamp(2rem, 6vw, 4rem);
+  font-size: clamp(1.6rem, 4.5vw, 3rem);
   color: var(--white);
+  white-space: nowrap;
 }
 
 .closing__sign {
@@ -1156,6 +1148,117 @@ p {
 
 .closing__name {
   color: var(--gold);
+}
+
+/* ---------------------------------------------------------------
+   Horizontal Loop — Atlas de Referências
+   --------------------------------------------------------------- */
+
+.keywords-loop {
+  width: 100%;
+  overflow: hidden;
+  padding: 8vh 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.keywords-loop__track {
+  display: flex;
+  gap: 6rem;
+  white-space: nowrap;
+  animation: keywords-scroll 60s linear infinite;
+  width: fit-content;
+}
+
+.keywords-loop__track span {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  opacity: 0.35;
+  flex-shrink: 0;
+  transition: opacity 0.8s var(--ease);
+}
+
+.keywords-loop:hover .keywords-loop__track {
+  animation-play-state: paused;
+}
+
+.keywords-loop:hover .keywords-loop__track span {
+  opacity: 0.6;
+}
+
+@keyframes keywords-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------------------------------------------------------------
+   Contact — O Ápice
+   --------------------------------------------------------------- */
+
+.chapter--contact {
+  align-items: center;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.contact-apex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.contact-apex__invite {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  line-height: 1.6;
+  color: var(--gray-light);
+  max-width: var(--text-max-width);
+  font-style: italic;
+}
+
+.contact-apex__link {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  letter-spacing: 0.06em;
+  color: var(--gray-light);
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+  transition: color 0.6s var(--ease);
+}
+
+.contact-apex__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.6s var(--ease);
+}
+
+.contact-apex__link:hover {
+  color: var(--gold);
+}
+
+.contact-apex__link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
 }
 
 /* ---------------------------------------------------------------
@@ -1202,6 +1305,14 @@ p {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .keywords-loop__track {
+    animation: none;
+  }
+
+  .keywords-loop__track span {
+    opacity: 0.4;
   }
 
   .cover-marquee__track {

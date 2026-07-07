@@ -30,30 +30,39 @@
   }
 
   /* -------------------------------------------------------------
-     Scroll-triggered reveal
+     Scroll-triggered reveal — GSAP ScrollTrigger
      ------------------------------------------------------------- */
 
   var revealTargets = document.querySelectorAll('.reveal-io');
 
-  if ('IntersectionObserver' in window && revealTargets.length) {
-    var revealObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2, rootMargin: '0px 0px -8% 0px' }
-    );
-
+  if (reduceMotion) {
     revealTargets.forEach(function (el) {
-      revealObserver.observe(el);
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
     });
-  } else {
+  } else if (window.gsap && window.ScrollTrigger && revealTargets.length) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray('.reveal-io').forEach(function (el) {
+      gsap.fromTo(el,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            once: true
+          }
+        }
+      );
+    });
+  } else if (revealTargets.length) {
     revealTargets.forEach(function (el) {
-      el.classList.add('is-visible');
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
     });
   }
 
