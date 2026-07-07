@@ -23,7 +23,8 @@
      PRELOADER
      ============================================ -->
   <div class="preloader" id="preloader" aria-hidden="true">
-    <span class="preloader__mark">A. CABRAL | MotorSport Fine Art </span>
+    <span class="preloader__mark">A. CABRAL | MotorSport Fine Art</span>
+    <div class="preloader__bar"><span></span></div>
   </div>
 
   <!-- ============================================
@@ -103,30 +104,58 @@
     </section>
 
     <!-- ============================================
+       GLOBAL PRESENCE — Editorial Introduction
+       ============================================ -->
+    <section class="global-presence" id="global-presence">
+      <div class="global-presence__inner">
+        <h2 class="global-presence__title reveal-io" data-io>PRESENÇA GLOBAL</h2>
+        <p class="global-presence__text reveal-io" data-io>
+          &ldquo;Uma galeria de obras que atravessam fronteiras, forma não precisa de tradução. Quando a precisão se
+          torna arte, ela é compreendida em qualquer lugar do mundo.&rdquo;
+        </p>
+        <p class="global-presence__subtext reveal-io" data-io>
+          Desenvolvi um globo interativo através do clique para o usuário se sentir dentro de uma galeria de arte.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================
+       GLOBE FOLIO — 3D Portfolio Sphere
+       ============================================ -->
+    <div id="globefolio-wrap">
+      <canvas id="globeCanvas"></canvas>
+      <div id="globeHint">CLIQUE PARA VER</div>
+      <button id="globeReset">↙ AFASTAR</button>
+    </div>
+
+    <!-- ============================================
        III — THE VISION
        ============================================ -->
     <section class="chapter chapter--vision" id="ch-03" data-chapter-index="2">
       <div class="vision">
         <div class="vision__head">
-          <p class="eyebrow reveal-io" data-io>III — The Vision</p>
-          <h2 class="heading reveal-io" data-io>The Vision</h2>
+          <p class="eyebrow reveal-io" data-io>III — Conceito</p>
+          <h2 class="heading reveal-io" data-io>A Visão</h2>
         </div>
         <div class="vision__body">
-          <p class="reveal-io" data-io>Adhemar Cabral does not build replicas. He removes everything from an engine, a
-            chassis, a wing — until only its essential form remains.</p>
-          <p class="reveal-io" data-io>This is not a motorsport story. It is a study of what endures once speed is taken
-            away.</p>
-          <p class="reveal-io" data-io>The site we propose will not sell. It will exhibit.</p>
+          <p class="reveal-io" data-io>Adhemar não constrói automóveis ele constrói permanência, cada detalhe é
+            construído com uma
+            única
+            razão: resistir ao tempo.</p>
+          <p class="reveal-io" data-io>Esta não é uma história sobre automobilismo. É uma reflexão sobre o que permanece
+            quando a velocidade deixa de existir.
+            .</p>
+          <p class="reveal-io" data-io>O site que propomos não venderá. Ele exibirá.</p>
         </div>
         <ul class="vision__words reveal-io" data-io>
-          <li>Silence</li>
-          <li>Precision</li>
-          <li>Craftsmanship</li>
-          <li>Legacy</li>
-          <li>Luxury</li>
-          <li>Timelessness</li>
-          <li>Negative space</li>
-          <li>Light</li>
+          <li>Silêncio</li>
+          <li>Precisão</li>
+          <li>Artesanato</li>
+          <li>Legado</li>
+          <li>Luxo</li>
+          <li>Eternidade</li>
+          <li>Espaço negativo</li>
+          <li>Luz</li>
           <li>Material</li>
           <li>Architecture</li>
         </ul>
@@ -340,6 +369,277 @@
     </section>
 
   </main>
+
+  <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <script>
+    function initGlobefolio() {
+      var wrap = document.getElementById('globefolio-wrap');
+      var canvas = document.getElementById('globeCanvas');
+      var hint = document.getElementById('globeHint');
+      var resetBtn = document.getElementById('globeReset');
+
+      if (!wrap || !canvas || !window.THREE || !window.gsap) {
+        setTimeout(initGlobefolio, 200);
+        return;
+      }
+      if (wrap.dataset.globefolioReady === 'true') return;
+      wrap.dataset.globefolioReady = 'true';
+
+      var IMG_URLS = [
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/22da5a8b4fc93141e2b1c71518bcdfdc.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/2ca8a113ca9a0db5c0f8fdda0ae2540c.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/6cc781e9a894e82e91ff89b5566dae1e.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/662bd468e899d978178cbcecbf4f7825.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/6b7c99cab54efc133bb4802f2c0f04b7.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/440cd497dc38750846abb9fc9da61013.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/9e18074293a18be300b19f5bd8fdfae6.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/f170bd7caa772d8bcdb75d4aa71c4b4d.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/5549e1da703dea0a7cd33661e715c906.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/de43cce60f6e2d4781cfcb7189356e13.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/6b64c3e641b12d68d2905a49dda46eec.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/af7ab075cc37dd5370809f3cb51418bf.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/f0f3a32d41f420d031a997d5ba8aa142.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/bf536919acc741891802717fcf7ba6f6.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/b081c58070799a9d69d5686634fe28ac.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/20df8f34408799f09be43698384c9eb3.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/94108f6f03ac669a47eef660a20eb571.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/b8980d014cd991624b406458a4358bb2.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/damn.png',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/f65bee811b835a5908f753eee3bd4b38.jpg',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/ChatGPT-Image-5-de-jun.-de-2025-07_28_21.png',
+        'https://vicenteczar.dev.br/wp-content/uploads/2026/07/diynamics.jpg'
+      ];
+
+      var SETTINGS = {
+        count: 180,
+        radius: 2.15,
+        imageHeight: 0.42,
+        imageRatio: 0.75,
+        idleRotation: 0.0016,
+        cameraDistance: 5.2,
+        clickZoomDistance: 1.05
+      };
+
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+      camera.position.set(0, 0, SETTINGS.cameraDistance);
+
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setClearColor(0x000000, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+      var controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.055;
+      controls.enablePan = false;
+      controls.enableZoom = false;
+      controls.rotateSpeed = 0.42;
+      controls.minPolarAngle = 0.15;
+      controls.maxPolarAngle = Math.PI - 0.15;
+
+      var globe = new THREE.Group();
+      scene.add(globe);
+
+      var raycaster = new THREE.Raycaster();
+      var pointer = new THREE.Vector2();
+      var clickableMeshes = [];
+      var hovered = null;
+      var isPointerDown = false;
+      var pointerDownX = 0;
+      var pointerDownY = 0;
+      var userInteracting = false;
+
+      var colorIdx = 0;
+      var CARD_COLORS = ['#B08D57', '#9A9A9A'];
+
+      function nextCardColor() {
+        return CARD_COLORS[colorIdx++ % CARD_COLORS.length];
+      }
+
+      function makeRoundedRectTexture(image, bgColor) {
+        var size = 512;
+        var c = document.createElement('canvas');
+        c.width = c.height = size;
+        var ctx = c.getContext('2d');
+        var pad = 18;
+        var tw = size - pad * 2;
+        var th = size - pad * 2;
+        var ir = image.width / image.height;
+        var tr = tw / th;
+        var sx = 0, sy = 0, sw = image.width, sh = image.height;
+        if (ir > tr) { sw = image.height * tr; sx = (image.width - sw) / 2; }
+        else { sh = image.width / tr; sy = (image.height - sh) / 2; }
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, size, size);
+        ctx.drawImage(image, sx, sy, sw, sh, pad, pad, tw, th);
+        var tex = new THREE.CanvasTexture(c);
+        tex.minFilter = THREE.LinearMipMapLinearFilter;
+        tex.magFilter = THREE.LinearFilter;
+        tex.generateMipmaps = true;
+        return tex;
+      }
+
+      function loadImageTexture(url) {
+        var bgColor = nextCardColor();
+        return new Promise(function (resolve) {
+          var img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = function () { resolve(makeRoundedRectTexture(img, bgColor)); };
+          img.onerror = function () {
+            var fb = document.createElement('canvas');
+            fb.width = fb.height = 512;
+            var ctx = fb.getContext('2d');
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, 512, 512);
+            resolve(new THREE.CanvasTexture(fb));
+          };
+          img.src = url;
+        });
+      }
+
+      function placeMeshes(textures) {
+        var phi = Math.PI * (3 - Math.sqrt(5));
+        var geo = new THREE.PlaneGeometry(
+          SETTINGS.imageHeight * SETTINGS.imageRatio,
+          SETTINGS.imageHeight
+        );
+        for (var i = 0; i < SETTINGS.count; i++) {
+          var y = 1 - (i / (SETTINGS.count - 1)) * 2;
+          var radiusAtY = Math.sqrt(1 - y * y);
+          var theta = i * phi;
+          var x = Math.cos(theta) * radiusAtY;
+          var z = Math.sin(theta) * radiusAtY;
+          var mat = new THREE.MeshBasicMaterial({
+            map: textures[i % textures.length],
+            side: THREE.DoubleSide,
+            transparent: true
+          });
+          var mesh = new THREE.Mesh(geo, mat);
+          mesh.position.set(x * SETTINGS.radius, y * SETTINGS.radius, z * SETTINGS.radius);
+          mesh.lookAt(mesh.position.clone().multiplyScalar(2));
+          mesh.userData.index = i;
+          globe.add(mesh);
+          clickableMeshes.push(mesh);
+        }
+      }
+
+      function updateSize() {
+        var rect = wrap.getBoundingClientRect();
+        var w = Math.max(1, rect.width);
+        var h = Math.max(1, rect.height);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h, false);
+      }
+
+      function updatePointer(e) {
+        var rect = canvas.getBoundingClientRect();
+        pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      }
+
+      function setHovered(mesh) {
+        if (hovered === mesh) return;
+        if (hovered) gsap.to(hovered.scale, { x: 1, y: 1, z: 1, duration: 0.22, ease: 'power2.out' });
+        hovered = mesh;
+        if (hovered) {
+          gsap.to(hovered.scale, { x: 1.22, y: 1.22, z: 1.22, duration: 0.22, ease: 'power2.out' });
+          hint.style.opacity = '1';
+          canvas.style.cursor = 'pointer';
+        } else {
+          hint.style.opacity = '0';
+          canvas.style.cursor = 'grab';
+        }
+      }
+
+      function raycast(e) {
+        updatePointer(e);
+        raycaster.setFromCamera(pointer, camera);
+        var hits = raycaster.intersectObjects(clickableMeshes, false);
+        return hits.length ? hits[0].object : null;
+      }
+
+      function resetCamera() {
+        controls.enabled = false;
+        gsap.to(controls.target, {
+          x: 0, y: 0, z: 0,
+          duration: 1.0, ease: 'power2.inOut'
+        });
+        gsap.to(camera.position, {
+          x: 0, y: 0, z: SETTINGS.cameraDistance,
+          duration: 1.0, ease: 'power2.inOut',
+          onUpdate: function () { controls.update(); },
+          onComplete: function () {
+            controls.enabled = true;
+            resetBtn.style.opacity = '0';
+            resetBtn.style.pointerEvents = 'none';
+          }
+        });
+      }
+
+      function zoomToMesh(mesh) {
+        var meshPos = mesh.getWorldPosition(new THREE.Vector3());
+        var dir = camera.position.clone().sub(controls.target).normalize();
+        var nextPos = meshPos.clone().add(dir.multiplyScalar(SETTINGS.clickZoomDistance));
+        controls.enabled = false;
+        gsap.to(controls.target, {
+          x: meshPos.x, y: meshPos.y, z: meshPos.z,
+          duration: 1.15, ease: 'power2.inOut'
+        });
+        gsap.to(camera.position, {
+          x: nextPos.x, y: nextPos.y, z: nextPos.z,
+          duration: 1.15, ease: 'power2.inOut',
+          onUpdate: function () { controls.update(); },
+          onComplete: function () {
+            controls.enabled = true;
+            resetBtn.style.opacity = '1';
+            resetBtn.style.pointerEvents = 'auto';
+          }
+        });
+      }
+
+      resetBtn.addEventListener('click', resetCamera);
+
+      canvas.addEventListener('pointermove', function (e) { if (!isPointerDown) setHovered(raycast(e)); });
+      canvas.addEventListener('pointerleave', function () { setHovered(null); });
+      canvas.addEventListener('pointerdown', function (e) {
+        isPointerDown = true;
+        userInteracting = true;
+        pointerDownX = e.clientX;
+        pointerDownY = e.clientY;
+      });
+      window.addEventListener('pointerup', function (e) {
+        if (!isPointerDown) return;
+        var moved = Math.hypot(e.clientX - pointerDownX, e.clientY - pointerDownY);
+        isPointerDown = false;
+        setTimeout(function () { userInteracting = false; }, 700);
+        if (moved < 6) { var mesh = raycast(e); if (mesh) zoomToMesh(mesh); }
+      });
+      window.addEventListener('resize', updateSize);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!userInteracting && controls.enabled) globe.rotation.y += SETTINGS.idleRotation;
+        controls.update();
+        renderer.render(scene, camera);
+      }
+
+      updateSize();
+      Promise.all(IMG_URLS.map(loadImageTexture)).then(function (textures) {
+        placeMeshes(textures);
+        animate();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGlobefolio);
+    } else {
+      initGlobefolio();
+    }
+  </script>
 
   <script src="main.js"></script>
 </body>

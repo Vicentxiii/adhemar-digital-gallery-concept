@@ -23,10 +23,10 @@
     hidePreloader();
   } else {
     window.addEventListener('load', function () {
-      setTimeout(hidePreloader, 900);
+      setTimeout(hidePreloader, 5000);
     });
     // Safety net in case 'load' is delayed by slow assets.
-    setTimeout(hidePreloader, 2500);
+    setTimeout(hidePreloader, 5500);
   }
 
   /* -------------------------------------------------------------
