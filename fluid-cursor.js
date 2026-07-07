@@ -7,6 +7,8 @@
 (() => {
   'use strict';
 
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
   // ---------- Configuração (ajuste à vontade) ----------
   const CONFIG = {
     color: [176, 141, 87],   // RGB dourado (#B08D57)
