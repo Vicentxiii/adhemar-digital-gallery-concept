@@ -1,270 +1,482 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Adhemar Cabral — Creative Direction Proposal</title>
-<meta name="description" content="A digital concept book presenting the creative direction for Adhemar Cabral — where engineering becomes sculpture." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adhemar Cabral — Proposta de Direção Criativa por Vicent Czar</title>
+  <meta name="description"
+    content="Um livro-conceito digital apresentando a direção criativa para Adhemar Cabral — onde a engenharia se torna escultura." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="importmap">
+    {
+      "imports": {
+        "ogl": "https://cdn.jsdelivr.net/npm/ogl@1.0.6/dist/ogl.mjs"
+      }
+    }
+  </script>
 </head>
+
 <body>
 
-<!-- ============================================
+  <!-- ============================================
      PRELOADER
      ============================================ -->
-<div class="preloader" id="preloader" aria-hidden="true">
-  <span class="preloader__mark">A. CABRAL</span>
-</div>
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <span class="preloader__mark">A. CABRAL | MotorSport Fine Art </span>
+  </div>
 
-<!-- ============================================
+  <!-- ============================================
      CHAPTER RAIL — wayfinding element
      Doubles as the book's spine and the gallery's
      room index. Desktop only; a top progress line
      replaces it on small screens.
      ============================================ -->
-<nav class="rail" aria-label="Chapters">
-  <div class="rail__track" aria-hidden="true"></div>
-  <ol class="rail__list">
-    <li><a href="#ch-01" data-chapter="0"><span class="rail__num">I</span></a></li>
-    <li><a href="#ch-02" data-chapter="1"><span class="rail__num">II</span></a></li>
-    <li><a href="#ch-03" data-chapter="2"><span class="rail__num">III</span></a></li>
-    <li><a href="#ch-04" data-chapter="3"><span class="rail__num">IV</span></a></li>
-    <li><a href="#ch-05" data-chapter="4"><span class="rail__num">V</span></a></li>
-    <li><a href="#ch-06" data-chapter="5"><span class="rail__num">VI</span></a></li>
-    <li><a href="#ch-07" data-chapter="6"><span class="rail__num">VII</span></a></li>
-    <li><a href="#ch-08" data-chapter="7"><span class="rail__num">VIII</span></a></li>
-    <li><a href="#ch-09" data-chapter="8"><span class="rail__num">IX</span></a></li>
-    <li><a href="#ch-10" data-chapter="9"><span class="rail__num">X</span></a></li>
-  </ol>
-</nav>
+  <nav class="rail" aria-label="Capítulos">
+    <div class="rail__track" aria-hidden="true"></div>
+    <ol class="rail__list">
+      <li><a href="#ch-01" data-chapter="0"><span class="rail__num">I</span></a></li>
+      <li><a href="#ch-02" data-chapter="1"><span class="rail__num">II</span></a></li>
+      <li><a href="#ch-03" data-chapter="2"><span class="rail__num">III</span></a></li>
+      <li><a href="#ch-04" data-chapter="3"><span class="rail__num">IV</span></a></li>
+      <li><a href="#ch-05" data-chapter="4"><span class="rail__num">V</span></a></li>
+      <li><a href="#ch-06" data-chapter="5"><span class="rail__num">VI</span></a></li>
+      <li><a href="#ch-07" data-chapter="6"><span class="rail__num">VII</span></a></li>
+      <li><a href="#ch-08" data-chapter="7"><span class="rail__num">VIII</span></a></li>
+      <li><a href="#ch-09" data-chapter="8"><span class="rail__num">IX</span></a></li>
+      <li><a href="#ch-10" data-chapter="9"><span class="rail__num">X</span></a></li>
+    </ol>
+  </nav>
 
-<div class="progress" aria-hidden="true"><div class="progress__fill" id="progressFill"></div></div>
+  <div class="progress" aria-hidden="true">
+    <div class="progress__fill" id="progressFill"></div>
+  </div>
 
-<main>
+  <main>
 
-  <!-- ============================================
+    <!-- ============================================
        I — OPENING
        ============================================ -->
-  <section class="chapter chapter--cover" id="ch-01" data-chapter-index="0">
-    <div class="cover">
-      <p class="reveal cover__eyebrow" style="--d:0">Creative direction proposal</p>
-      <h1 class="reveal cover__name" style="--d:1">Adhemar<br>Cabral</h1>
-      <p class="reveal cover__line" style="--d:2">A study in stillness — where engineering becomes sculpture.</p>
-    </div>
-    <div class="scroll-cue reveal" style="--d:3" aria-hidden="true">
-      <span>begin</span>
-      <div class="scroll-cue__line"></div>
-    </div>
-  </section>
+    <section class="chapter chapter--cover" id="ch-01" data-chapter-index="0">
+      <div class="light-rays"></div>
+      <div class="cover-group">
+        <div class="cover">
+          <p class="cover__eyebrow">Proposta de direção criativa por VicentCzar 2026</p>
+          <h1 class="cover__name">Adhemar<br>Cabral</h1>
+          <p class="cover__line">Um estudo fino da Mobilidade esportiva, onde a engenharia se torna
+            escultura.</p>
+          <div class="cover__words" aria-hidden="true">
+            <span class="cover__word">Silêncio</span>
+            <span class="cover__word">Profundidade</span>
+            <span class="cover__word">Galeria</span>
+            <span class="cover__word">Museu</span>
+            <span class="cover__word">Escultura</span>
+            <span class="cover__word">Luz</span>
+            <span class="cover__word">Precisão</span>
+            <span class="cover__word">Atemporal</span>
+          </div>
+        </div>
+        <div class="scroll-cue" aria-hidden="true">
+          <span>iniciar</span>
+          <div class="scroll-cue__line"></div>
+        </div>
+      </div>
+    </section>
 
-  <!-- ============================================
+    <!-- ============================================
        II — MANIFESTO
        ============================================ -->
-  <section class="chapter chapter--manifesto" id="ch-02" data-chapter-index="1">
-    <p class="eyebrow reveal-io" data-io>II — Manifesto</p>
-    <p class="manifesto reveal-io" data-io>
-      We are not designing a website.<br>
-      We are designing a place where<br>
-      engineering becomes art.
-    </p>
-  </section>
+    <section class="chapter chapter--manifesto" id="ch-02" data-chapter-index="1">
+      <p class="eyebrow reveal-io" data-io>II — Manifesto</p>
+      <p class="manifesto reveal-io" data-io>
+        Não estamos a desenhar um website.<br>
+        Estamos a desenhar um lugar onde<br>
+        a engenharia se torna arte.
+      </p>
+    </section>
 
-  <!-- ============================================
+    <!-- ============================================
        III — THE VISION
        ============================================ -->
-  <section class="chapter chapter--vision" id="ch-03" data-chapter-index="2">
-    <div class="vision">
-      <div class="vision__head">
-        <p class="eyebrow reveal-io" data-io>III — The Vision</p>
-        <h2 class="heading reveal-io" data-io>The Vision</h2>
+    <section class="chapter chapter--vision" id="ch-03" data-chapter-index="2">
+      <div class="vision">
+        <div class="vision__head">
+          <p class="eyebrow reveal-io" data-io>III — A Visão</p>
+          <h2 class="heading reveal-io" data-io>A Visão</h2>
+        </div>
+        <div class="vision__body">
+          <p class="reveal-io" data-io>Adhemar Cabral não constrói réplicas. Ele remove tudo de um motor, um
+            chassi, uma asa — até que reste apenas sua forma essencial.</p>
+          <p class="reveal-io" data-io>Esta não é uma história de automobilismo. É um estudo sobre o que perdura quando a velocidade é
+            retirada.</p>
+          <p class="reveal-io" data-io>O site que propomos não venderá. Ele exibirá.</p>
+        </div>
+        <ul class="vision__words reveal-io" data-io>
+          <li>Silêncio</li>
+          <li>Precisão</li>
+          <li>Artesanato</li>
+          <li>Legado</li>
+          <li>Luxo</li>
+          <li>Atemporalidade</li>
+          <li>Espaço negativo</li>
+          <li>Luz</li>
+          <li>Material</li>
+          <li>Arquitetura</li>
+        </ul>
       </div>
-      <div class="vision__body">
-        <p class="reveal-io" data-io>Adhemar Cabral does not build replicas. He removes everything from an engine, a chassis, a wing — until only its essential form remains.</p>
-        <p class="reveal-io" data-io>This is not a motorsport story. It is a study of what endures once speed is taken away.</p>
-        <p class="reveal-io" data-io>The site we propose will not sell. It will exhibit.</p>
-      </div>
-      <ul class="vision__words reveal-io" data-io>
-        <li>Silence</li>
-        <li>Precision</li>
-        <li>Craftsmanship</li>
-        <li>Legacy</li>
-        <li>Luxury</li>
-        <li>Timelessness</li>
-        <li>Negative space</li>
-        <li>Light</li>
-        <li>Material</li>
-        <li>Architecture</li>
-      </ul>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================
+    <!-- ============================================
        IV — MOODBOARD
        ============================================ -->
-  <section class="chapter chapter--moodboard" id="ch-04" data-chapter-index="3">
-    <div class="section-head">
-      <p class="eyebrow reveal-io" data-io>IV — Moodboard</p>
-      <h2 class="heading reveal-io" data-io>Moodboard</h2>
-      <p class="section-sub reveal-io" data-io>References, not decoration.</p>
-    </div>
-    <div class="moodboard">
-      <figure class="plate plate--a reveal-io" data-io><figcaption>Plate 01 — Luxury</figcaption></figure>
-      <figure class="plate plate--b reveal-io" data-io><figcaption>Plate 02 — Architecture</figcaption></figure>
-      <figure class="plate plate--c reveal-io" data-io><figcaption>Plate 03 — Museums</figcaption></figure>
-      <figure class="plate plate--d reveal-io" data-io><figcaption>Plate 04 — Automotive sculpture</figcaption></figure>
-      <figure class="plate plate--e reveal-io" data-io><figcaption>Plate 05 — Light</figcaption></figure>
-      <figure class="plate plate--f reveal-io" data-io><figcaption>Plate 06 — Materials</figcaption></figure>
-    </div>
-  </section>
+    <section class="chapter chapter--moodboard" id="ch-04" data-chapter-index="3">
+      <div class="section-head">
+        <p class="eyebrow reveal-io" data-io>IV — Moodboard</p>
+        <h2 class="heading reveal-io" data-io>Moodboard</h2>
+        <p class="section-sub reveal-io" data-io>Referências, não decoração.</p>
+      </div>
+      <div class="moodboard">
+        <figure class="plate plate--a reveal-io" data-io>
+          <figcaption>Placa 01 — Luxo</figcaption>
+        </figure>
+        <figure class="plate plate--b reveal-io" data-io>
+          <figcaption>Placa 02 — Arquitetura</figcaption>
+        </figure>
+        <figure class="plate plate--c reveal-io" data-io>
+          <figcaption>Placa 03 — Museus</figcaption>
+        </figure>
+        <figure class="plate plate--d reveal-io" data-io>
+          <figcaption>Placa 04 — Escultura automotiva</figcaption>
+        </figure>
+        <figure class="plate plate--e reveal-io" data-io>
+          <figcaption>Placa 05 — Luz</figcaption>
+        </figure>
+        <figure class="plate plate--f reveal-io" data-io>
+          <figcaption>Placa 06 — Materiais</figcaption>
+        </figure>
+      </div>
+    </section>
 
-  <!-- ============================================
+    <!-- ============================================
        V — VISUAL LANGUAGE
        ============================================ -->
-  <section class="chapter chapter--language" id="ch-05" data-chapter-index="4">
-    <div class="section-head">
-      <p class="eyebrow reveal-io" data-io>V — Visual Language</p>
-      <h2 class="heading reveal-io" data-io>Visual Language</h2>
-    </div>
-
-    <div class="language-block reveal-io" data-io>
-      <p class="language-block__label">Palette</p>
-      <div class="swatches">
-        <div class="swatch"><span class="swatch__chip" style="background:#0B0B0C;border:1px solid var(--gray-light)"></span><span class="swatch__hex">#0B0B0C</span><span class="swatch__name">Background</span></div>
-        <div class="swatch"><span class="swatch__chip" style="background:#F4F2EE"></span><span class="swatch__hex">#F4F2EE</span><span class="swatch__name">Primary text</span></div>
-        <div class="swatch"><span class="swatch__chip" style="background:#9A9A9A"></span><span class="swatch__hex">#9A9A9A</span><span class="swatch__name">Secondary text</span></div>
-        <div class="swatch"><span class="swatch__chip" style="background:#D7D7D7"></span><span class="swatch__hex">#D7D7D7</span><span class="swatch__name">Dividers</span></div>
-        <div class="swatch"><span class="swatch__chip" style="background:#B08D57"></span><span class="swatch__hex">#B08D57</span><span class="swatch__name">Accent — used rarely</span></div>
+    <section class="chapter chapter--language" id="ch-05" data-chapter-index="4">
+      <div class="section-head">
+        <p class="eyebrow reveal-io" data-io">V — Linguagem Visual</p>
+        <h2 class="heading reveal-io" data-io">Linguagem Visual</h2>
       </div>
-    </div>
 
-    <div class="language-block reveal-io" data-io>
-      <p class="language-block__label">Typography</p>
-      <p class="specimen specimen--serif">Aa</p>
-      <p class="specimen-caption">Fraunces — editorial serif, weight 300. Titles, statements, the artist's name.</p>
-      <p class="specimen specimen--sans">Aa</p>
-      <p class="specimen-caption">Inter — minimal sans, weight 300–400. Body copy, labels, captions.</p>
-    </div>
-
-    <div class="language-block reveal-io" data-io>
-      <p class="language-block__label">Spacing</p>
-      <div class="spacing-scale">
-        <div class="spacing-bar" style="width:8px"></div>
-        <div class="spacing-bar" style="width:16px"></div>
-        <div class="spacing-bar" style="width:32px"></div>
-        <div class="spacing-bar" style="width:64px"></div>
-        <div class="spacing-bar" style="width:128px"></div>
+      <div class="language-block reveal-io" data-io>
+        <p class="language-block__label">Paleta</p>
+        <div class="swatches">
+          <div class="swatch"><span class="swatch__chip"
+              style="background:#0B0B0C;border:1px solid var(--gray-light)"></span><span
+              class="swatch__hex">#0B0B0C</span><span class="swatch__name">Fundo</span></div>
+          <div class="swatch"><span class="swatch__chip" style="background:#F4F2EE"></span><span
+              class="swatch__hex">#F4F2EE</span><span class="swatch__name">Texto primário</span></div>
+          <div class="swatch"><span class="swatch__chip" style="background:#9A9A9A"></span><span
+              class="swatch__hex">#9A9A9A</span><span class="swatch__name">Texto secundário</span></div>
+          <div class="swatch"><span class="swatch__chip" style="background:#D7D7D7"></span><span
+              class="swatch__hex">#D7D7D7</span><span class="swatch__name">Divisores</span></div>
+          <div class="swatch"><span class="swatch__chip" style="background:#B08D57"></span><span
+              class="swatch__hex">#B08D57</span><span class="swatch__name">Destaque — usado raramente</span></div>
+        </div>
       </div>
-      <p class="specimen-caption">A scale that widens deliberately. Whitespace is never left over — it is placed.</p>
-    </div>
 
-    <div class="language-block reveal-io" data-io>
-      <p class="language-block__label">Interaction</p>
-      <p class="specimen-caption">Transitions run slow — 600 to 1200 milliseconds, eased, never bounced. Nothing on this site arrives quickly. The accent color appears only on hover, and only once per screen.</p>
-    </div>
-  </section>
+      <div class="language-block reveal-io" data-io>
+        <p class="language-block__label">Tipografia</p>
+        <p class="specimen specimen--serif">Aa</p>
+        <p class="specimen-caption">Fraunces — serifa editorial, peso 300. Títulos, declarações, o nome do artista.</p>
+        <p class="specimen specimen--sans">Aa</p>
+        <p class="specimen-caption">Inter — sans minimalista, peso 300–400. Corpo do texto, rótulos, legendas.</p>
+      </div>
 
-  <!-- ============================================
+      <div class="language-block reveal-io" data-io>
+        <p class="language-block__label">Espaçamento</p>
+        <div class="spacing-scale">
+          <div class="spacing-bar" style="width:8px"></div>
+          <div class="spacing-bar" style="width:16px"></div>
+          <div class="spacing-bar" style="width:32px"></div>
+          <div class="spacing-bar" style="width:64px"></div>
+          <div class="spacing-bar" style="width:128px"></div>
+        </div>
+        <p class="specimen-caption">Uma escala que se alarga deliberadamente. O espaço em branco nunca é sobra — é colocado.</p>
+      </div>
+
+      <div class="language-block reveal-io" data-io>
+        <p class="language-block__label">Interação</p>
+        <p class="specimen-caption">As transições são lentas — 600 a 1200 milissegundos, suaves, nunca com bounce. Nada neste
+          site chega rapidamente. A cor de destaque aparece apenas ao passar o mouse, e apenas uma vez por tela.</p>
+      </div>
+    </section>
+
+    <!-- ============================================
        VI — USER JOURNEY
        ============================================ -->
-  <section class="chapter chapter--journey" id="ch-06" data-chapter-index="5">
-    <div class="section-head">
-      <p class="eyebrow reveal-io" data-io>VI — User Journey</p>
-      <h2 class="heading reveal-io" data-io>User Journey</h2>
-      <p class="section-sub reveal-io" data-io>A cinematic storyboard, not a sitemap.</p>
-    </div>
-    <ol class="journey">
-      <li class="journey__step reveal-io" data-io><span class="journey__mark">01</span><span class="journey__title">Arrival</span><span class="journey__desc">A black screen. A name. Nothing asks for attention.</span></li>
-      <li class="journey__step reveal-io" data-io><span class="journey__mark">02</span><span class="journey__title">Silence</span><span class="journey__desc">A pause before the first work appears — the visitor slows down without noticing.</span></li>
-      <li class="journey__step reveal-io" data-io><span class="journey__mark">03</span><span class="journey__title">Artwork</span><span class="journey__desc">A single sculpture, alone, given the entire screen.</span></li>
-      <li class="journey__step reveal-io" data-io><span class="journey__mark">04</span><span class="journey__title">Story</span><span class="journey__desc">The idea behind the piece — brief, unhurried, in the artist's own words.</span></li>
-      <li class="journey__step reveal-io" data-io><span class="journey__mark">05</span><span class="journey__title">Process</span><span class="journey__desc">Material, method, hours — the craft made visible without being explained away.</span></li>
-      <li class="journey__step reveal-io" data-io><span class="journey__mark">06</span><span class="journey__title">Recognition</span><span class="journey__desc">Where the work has stood. Institutions named plainly, without ornament.</span></li>
-      <li class="journey__step reveal-io" data-io><span class="journey__mark">07</span><span class="journey__title">Contact</span><span class="journey__desc">One line. One address. The conversation begins off-screen.</span></li>
-    </ol>
-  </section>
+    <section class="chapter chapter--journey" id="ch-06" data-chapter-index="5">
+      <div class="section-head">
+        <p class="eyebrow reveal-io" data-io>VI — Jornada do Usuário</p>
+        <h2 class="heading reveal-io" data-io>Jornada do Usuário</h2>
+        <p class="section-sub reveal-io" data-io>Um storyboard cinematográfico, não um sitemap.</p>
+      </div>
+      <ol class="journey">
+        <li class="journey__step reveal-io" data-io><span class="journey__mark">01</span><span
+            class="journey__title">Chegada</span><span class="journey__desc">Uma tela preta. Um nome. Nada pede
+            atenção.</span></li>
+        <li class="journey__step reveal-io" data-io><span class="journey__mark">02</span><span
+            class="journey__title">Silêncio</span><span class="journey__desc">Uma pausa antes da primeira obra aparecer — o
+            visitante desacelera sem perceber.</span></li>
+        <li class="journey__step reveal-io" data-io><span class="journey__mark">03</span><span
+            class="journey__title">Obra</span><span class="journey__desc">Uma única escultura, sozinha, ocupando a tela
+            inteira.</span></li>
+        <li class="journey__step reveal-io" data-io><span class="journey__mark">04</span><span
+            class="journey__title">História</span><span class="journey__desc">A ideia por trás da peça — breve, sem pressa,
+            nas próprias palavras do artista.</span></li>
+        <li class="journey__step reveal-io" data-io><span class="journey__mark">05</span><span
+            class="journey__title">Processo</span><span class="journey__desc">Material, método, horas — o ofício tornado
+            visível sem ser explicado demais.</span></li>
+        <li class="journey__step reveal-io" data-io><span class="journey__mark">06</span><span
+            class="journey__title">Reconhecimento</span><span class="journey__desc">Onde a obra esteve. Instituições
+            nomeadas com simplicidade, sem ornamentos.</span></li>
+        <li class="journey__step reveal-io" data-io><span class="journey__mark">07</span><span
+            class="journey__title">Contato</span><span class="journey__desc">Uma linha. Um endereço. A conversa
+            começa fora da tela.</span></li>
+      </ol>
+    </section>
 
-  <!-- ============================================
+    <!-- ============================================
        VII — WIREFRAME CONCEPTS
        ============================================ -->
-  <section class="chapter chapter--wireframes" id="ch-07" data-chapter-index="6">
-    <div class="section-head">
-      <p class="eyebrow reveal-io" data-io>VII — Wireframe Concepts</p>
-      <h2 class="heading reveal-io" data-io>Wireframe Concepts</h2>
-    </div>
-    <div class="wireframes">
-      <figure class="wireframe reveal-io" data-io>
-        <svg viewBox="0 0 320 200" class="wireframe__svg" aria-hidden="true">
-          <rect x="1" y="1" width="318" height="198" fill="none" stroke="#D7D7D7" stroke-opacity="0.35" stroke-width="1"/>
-          <line x1="160" y1="40" x2="160" y2="56" stroke="#D7D7D7" stroke-opacity="0.5"/>
-          <line x1="120" y1="120" x2="200" y2="120" stroke="#D7D7D7" stroke-opacity="0.5"/>
-          <line x1="145" y1="150" x2="175" y2="150" stroke="#D7D7D7" stroke-opacity="0.35"/>
-        </svg>
-        <figcaption>Entrance — a name, a line, negative space</figcaption>
-      </figure>
-      <figure class="wireframe reveal-io" data-io>
-        <svg viewBox="0 0 320 200" class="wireframe__svg" aria-hidden="true">
-          <rect x="1" y="1" width="318" height="198" fill="none" stroke="#D7D7D7" stroke-opacity="0.35" stroke-width="1"/>
-          <rect x="24" y="30" width="120" height="80" fill="none" stroke="#D7D7D7" stroke-opacity="0.5"/>
-          <rect x="176" y="30" width="120" height="140" fill="none" stroke="#D7D7D7" stroke-opacity="0.5"/>
-          <rect x="24" y="130" width="120" height="40" fill="none" stroke="#D7D7D7" stroke-opacity="0.5"/>
-        </svg>
-        <figcaption>Gallery — asymmetric, never gridded</figcaption>
-      </figure>
-      <figure class="wireframe reveal-io" data-io>
-        <svg viewBox="0 0 320 200" class="wireframe__svg" aria-hidden="true">
-          <rect x="1" y="1" width="318" height="198" fill="none" stroke="#D7D7D7" stroke-opacity="0.35" stroke-width="1"/>
-          <rect x="40" y="24" width="150" height="152" fill="none" stroke="#D7D7D7" stroke-opacity="0.5"/>
-          <line x1="220" y1="50" x2="280" y2="50" stroke="#D7D7D7" stroke-opacity="0.5"/>
-          <line x1="220" y1="70" x2="270" y2="70" stroke="#D7D7D7" stroke-opacity="0.35"/>
-          <line x1="220" y1="90" x2="260" y2="90" stroke="#D7D7D7" stroke-opacity="0.35"/>
-        </svg>
-        <figcaption>Piece — the work large, the text small</figcaption>
-      </figure>
-    </div>
-  </section>
+    <section class="chapter chapter--wireframes" id="ch-07" data-chapter-index="6">
+      <div class="section-head">
+        <p class="eyebrow reveal-io" data-io>VII — Conceitos de Wireframe</p>
+        <h2 class="heading reveal-io" data-io>Conceitos de Wireframe</h2>
+      </div>
+      <div class="wireframes">
+        <figure class="wireframe reveal-io" data-io>
+          <svg viewBox="0 0 320 200" class="wireframe__svg" aria-hidden="true">
+            <rect x="1" y="1" width="318" height="198" fill="none" stroke="#D7D7D7" stroke-opacity="0.35"
+              stroke-width="1" />
+            <line x1="160" y1="40" x2="160" y2="56" stroke="#D7D7D7" stroke-opacity="0.5" />
+            <line x1="120" y1="120" x2="200" y2="120" stroke="#D7D7D7" stroke-opacity="0.5" />
+            <line x1="145" y1="150" x2="175" y2="150" stroke="#D7D7D7" stroke-opacity="0.35" />
+          </svg>
+          <figcaption>Entrada — um nome, uma linha, espaço negativo</figcaption>
+        </figure>
+        <figure class="wireframe reveal-io" data-io>
+          <svg viewBox="0 0 320 200" class="wireframe__svg" aria-hidden="true">
+            <rect x="1" y="1" width="318" height="198" fill="none" stroke="#D7D7D7" stroke-opacity="0.35"
+              stroke-width="1" />
+            <rect x="24" y="30" width="120" height="80" fill="none" stroke="#D7D7D7" stroke-opacity="0.5" />
+            <rect x="176" y="30" width="120" height="140" fill="none" stroke="#D7D7D7" stroke-opacity="0.5" />
+            <rect x="24" y="130" width="120" height="40" fill="none" stroke="#D7D7D7" stroke-opacity="0.5" />
+          </svg>
+          <figcaption>Galeria — assimétrica, nunca gradeada</figcaption>
+        </figure>
+        <figure class="wireframe reveal-io" data-io>
+          <svg viewBox="0 0 320 200" class="wireframe__svg" aria-hidden="true">
+            <rect x="1" y="1" width="318" height="198" fill="none" stroke="#D7D7D7" stroke-opacity="0.35"
+              stroke-width="1" />
+            <rect x="40" y="24" width="150" height="152" fill="none" stroke="#D7D7D7" stroke-opacity="0.5" />
+            <line x1="220" y1="50" x2="280" y2="50" stroke="#D7D7D7" stroke-opacity="0.5" />
+            <line x1="220" y1="70" x2="270" y2="70" stroke="#D7D7D7" stroke-opacity="0.35" />
+            <line x1="220" y1="90" x2="260" y2="90" stroke="#D7D7D7" stroke-opacity="0.35" />
+          </svg>
+          <figcaption>Peça — a obra grande, o texto pequeno</figcaption>
+        </figure>
+      </div>
+    </section>
 
-  <!-- ============================================
+    <!-- ============================================
        VIII — CREATIVE PRINCIPLES
        ============================================ -->
-  <section class="chapter chapter--principles" id="ch-08" data-chapter-index="7">
-    <p class="eyebrow reveal-io" data-io>VIII — Creative Principles</p>
-    <p class="principle reveal-io" data-io>Luxury is silence.</p>
-    <p class="principle reveal-io" data-io>The interface should disappear.</p>
-    <p class="principle reveal-io" data-io>Every transition must feel intentional.</p>
-  </section>
+    <section class="chapter chapter--principles" id="ch-08" data-chapter-index="7">
+      <p class="eyebrow reveal-io" data-io>VIII — Princípios Criativos</p>
+      <p class="principle reveal-io" data-io>Luxo é silêncio.</p>
+      <p class="principle reveal-io" data-io>A interface deve desaparecer.</p>
+      <p class="principle reveal-io" data-io>Toda transição deve parecer intencional.</p>
+    </section>
 
-  <!-- ============================================
+    <!-- ============================================
        IX — NEXT STEPS
        ============================================ -->
-  <section class="chapter chapter--steps" id="ch-09" data-chapter-index="8">
-    <div class="section-head">
-      <p class="eyebrow reveal-io" data-io>IX — Next Steps</p>
-      <h2 class="heading reveal-io" data-io>Next Steps</h2>
-    </div>
-    <ol class="timeline">
-      <li class="timeline__step reveal-io" data-io><span class="timeline__num">I</span><span class="timeline__title">Research</span><span class="timeline__desc">Archive review, reference gathering, competitive silence audit.</span></li>
-      <li class="timeline__step reveal-io" data-io><span class="timeline__num">II</span><span class="timeline__title">Photography</span><span class="timeline__desc">Studio sessions built around light, not lighting equipment.</span></li>
-      <li class="timeline__step reveal-io" data-io><span class="timeline__num">III</span><span class="timeline__title">Design</span><span class="timeline__desc">Composition, type, motion — refined chapter by chapter.</span></li>
-      <li class="timeline__step reveal-io" data-io><span class="timeline__num">IV</span><span class="timeline__title">Development</span><span class="timeline__desc">Built to feel inevitable, not assembled.</span></li>
-      <li class="timeline__step reveal-io" data-io><span class="timeline__num">V</span><span class="timeline__title">Launch</span><span class="timeline__desc">Quiet. No countdown, no fanfare.</span></li>
-    </ol>
-  </section>
+    <section class="chapter chapter--steps" id="ch-09" data-chapter-index="8">
+      <div class="section-head">
+        <p class="eyebrow reveal-io" data-io>IX — Próximos Passos</p>
+        <h2 class="heading reveal-io" data-io>Próximos Passos</h2>
+      </div>
+      <ol class="timeline">
+        <li class="timeline__step reveal-io" data-io><span class="timeline__num">I</span><span
+            class="timeline__title">Pesquisa</span><span class="timeline__desc">Revisão de arquivo, coleta de referências,
+            auditoria de silêncio competitiva.</span></li>
+        <li class="timeline__step reveal-io" data-io><span class="timeline__num">II</span><span
+            class="timeline__title">Fotografia</span><span class="timeline__desc">Sessões de estúdio construídas em torno da luz,
+            não de equipamentos de iluminação.</span></li>
+        <li class="timeline__step reveal-io" data-io><span class="timeline__num">III</span><span
+            class="timeline__title">Design</span><span class="timeline__desc">Composição, tipografia, movimento — refinados
+            capítulo por capítulo.</span></li>
+        <li class="timeline__step reveal-io" data-io><span class="timeline__num">IV</span><span
+            class="timeline__title">Desenvolvimento</span><span class="timeline__desc">Construído para parecer inevitável, não
+            montado.</span></li>
+        <li class="timeline__step reveal-io" data-io><span class="timeline__num">V</span><span
+            class="timeline__title">Lançamento</span><span class="timeline__desc">Silencioso. Sem contagem regressiva, sem alarde.</span>
+        </li>
+      </ol>
+    </section>
 
-  <!-- ============================================
+    <!-- ============================================
        X — CLOSING
        ============================================ -->
-  <section class="chapter chapter--closing" id="ch-10" data-chapter-index="9">
-    <p class="closing reveal-io" data-io>Designed to be remembered.</p>
-    <p class="closing__sign reveal-io" data-io>Adhemar Cabral — Creative Direction, MMXXVI</p>
-  </section>
+    <section class="chapter chapter--closing" id="ch-10" data-chapter-index="9">
+      <p class="closing reveal-io" data-io">Projetado para ser lembrado.</p>
+      <p class="closing__sign reveal-io" data-io">Adhemar Cabral — Direção Criativa, MMXXVI</p>
+    </section>
 
-</main>
+  </main>
 
-<script src="main.js"></script>
+  <script src="main.js"></script>
+  <script type="module">
+    import { Renderer, Program, Triangle, Mesh } from 'ogl';
+
+    const hexToRgb = hex => {
+      const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return m ? [parseInt(m[1], 16) / 255, parseInt(m[2], 16) / 255, parseInt(m[3], 16) / 255] : [1, 1, 1];
+    };
+
+    const getAnchorAndDir = (origin, w, h) => {
+      const outside = 0.2;
+      switch (origin) {
+        case 'top-left': return { anchor: [0, -outside * h], dir: [0, 1] };
+        case 'top-right': return { anchor: [w, -outside * h], dir: [0, 1] };
+        case 'left': return { anchor: [-outside * w, 0.5 * h], dir: [1, 0] };
+        case 'right': return { anchor: [(1 + outside) * w, 0.5 * h], dir: [-1, 0] };
+        case 'bottom-left': return { anchor: [0, (1 + outside) * h], dir: [0, -1] };
+        case 'bottom-center': return { anchor: [0.5 * w, (1 + outside) * h], dir: [0, -1] };
+        case 'bottom-right': return { anchor: [w, (1 + outside) * h], dir: [0, -1] };
+        default: return { anchor: [0.5 * w, -outside * h], dir: [0, 1] };
+      }
+    };
+
+    const container = document.querySelector('.light-rays');
+    if (!container) throw new Error('.light-rays not found');
+
+    const renderer = new Renderer({
+      dpr: Math.min(window.devicePixelRatio, 2),
+      alpha: true
+    });
+    const gl = renderer.gl;
+    gl.canvas.style.width = '100%';
+    gl.canvas.style.height = '100%';
+    container.appendChild(gl.canvas);
+
+    const vert = `attribute vec2 position;varying vec2 vUv;void main(){vUv=position*0.5+0.5;gl_Position=vec4(position,0.0,1.0);}`;
+
+    const frag = `precision highp float;
+uniform float iTime;uniform vec2 iResolution;uniform vec2 rayPos;uniform vec2 rayDir;uniform vec3 raysColor;uniform float raysSpeed;uniform float lightSpread;uniform float rayLength;uniform float pulsating;uniform float fadeDistance;uniform float saturation;uniform vec2 mousePos;uniform float mouseInfluence;uniform float noiseAmount;uniform float distortion;
+varying vec2 vUv;
+float noise(vec2 st){return fract(sin(dot(st.xy,vec2(12.9898,78.233)))*43758.5453123);}
+float rayStrength(vec2 raySource,vec2 rayRefDirection,vec2 coord,float seedA,float seedB,float speed){
+  vec2 sourceToCoord=coord-raySource;vec2 dirNorm=normalize(sourceToCoord);float cosAngle=dot(dirNorm,rayRefDirection);
+  float distortedAngle=cosAngle+distortion*sin(iTime*2.0+length(sourceToCoord)*0.01)*0.2;
+  float spreadFactor=pow(max(distortedAngle,0.0),1.0/max(lightSpread,0.001));
+  float distance=length(sourceToCoord);float maxDistance=iResolution.x*rayLength;float lengthFalloff=clamp((maxDistance-distance)/maxDistance,0.0,1.0);
+  float fadeFalloff=clamp((iResolution.x*fadeDistance-distance)/(iResolution.x*fadeDistance),0.5,1.0);float pulse=pulsating>0.5?(0.8+0.2*sin(iTime*speed*3.0)):1.0;
+  float baseStrength=clamp((0.45+0.15*sin(distortedAngle*seedA+iTime*speed))+(0.3+0.2*cos(-distortedAngle*seedB+iTime*speed)),0.0,1.0);
+  return baseStrength*lengthFalloff*fadeFalloff*spreadFactor*pulse;
+}
+void mainImage(out vec4 fragColor,in vec2 fragCoord){
+  vec2 coord=vec2(fragCoord.x,iResolution.y-fragCoord.y);
+  vec2 finalRayDir=rayDir;
+  if(mouseInfluence>0.0){vec2 mouseScreenPos=mousePos*iResolution.xy;vec2 mouseDirection=normalize(mouseScreenPos-rayPos);finalRayDir=mix(rayDir,mouseDirection,mouseInfluence);}
+  vec4 rays1=vec4(1.0)*rayStrength(rayPos,finalRayDir,coord,36.2214,21.11349,1.5*raysSpeed);
+  vec4 rays2=vec4(1.0)*rayStrength(rayPos,finalRayDir,coord,22.3991,18.0234,1.1*raysSpeed);
+  fragColor=rays1*0.5+rays2*0.4;
+  if(noiseAmount>0.0){float n=noise(coord*0.01+iTime*0.1);fragColor.rgb*=(1.0-noiseAmount+noiseAmount*n);}
+  float brightness=1.0-(coord.y/iResolution.y);
+  fragColor.x*=0.1+brightness*0.8;fragColor.y*=0.3+brightness*0.6;fragColor.z*=0.5+brightness*0.5;
+  if(saturation!=1.0){float gray=dot(fragColor.rgb,vec3(0.299,0.587,0.114));fragColor.rgb=mix(vec3(gray),fragColor.rgb,saturation);}
+  fragColor.rgb*=raysColor;
+}
+void main(){vec4 color;mainImage(color,gl_FragCoord.xy);gl_FragColor=color;}`;
+
+    const uniforms = {
+      iTime: { value: 0 },
+      iResolution: { value: [1, 1] },
+      rayPos: { value: [0, 0] },
+      rayDir: { value: [0, 1] },
+      raysColor: { value: hexToRgb('#00ffff') },
+      raysSpeed: { value: 1.5 },
+      lightSpread: { value: 1 },
+      rayLength: { value: 1.2 },
+      pulsating: { value: 0.0 },
+      fadeDistance: { value: 1.0 },
+      saturation: { value: 1.0 },
+      mousePos: { value: [0.5, 0.5] },
+      mouseInfluence: { value: 0.1 },
+      noiseAmount: { value: 0.1 },
+      distortion: { value: 0.05 }
+    };
+
+    const geometry = new Triangle(gl);
+    const program = new Program(gl, { vertex: vert, fragment: frag, uniforms });
+    const mesh = new Mesh(gl, { geometry, program });
+
+    let rendererActive = true;
+    let animId = null;
+
+    const mouse = { x: 0.5, y: 0.5 };
+    const smoothMouse = { x: 0.5, y: 0.5 };
+
+    const updatePlacement = () => {
+      if (!container || !renderer) return;
+      renderer.dpr = Math.min(window.devicePixelRatio, 2);
+      const wCSS = container.clientWidth;
+      const hCSS = container.clientHeight;
+      renderer.setSize(wCSS, hCSS);
+      const dpr = renderer.dpr;
+      const w = wCSS * dpr;
+      const h = hCSS * dpr;
+      uniforms.iResolution.value = [w, h];
+      const { anchor, dir } = getAnchorAndDir('top-center', w, h);
+      uniforms.rayPos.value = anchor;
+      uniforms.rayDir.value = dir;
+    };
+
+    const loop = t => {
+      if (!rendererActive) return;
+      uniforms.iTime.value = t * 0.001;
+      if (uniforms.mouseInfluence.value > 0.0) {
+        smoothMouse.x = smoothMouse.x * 0.92 + mouse.x * 0.08;
+        smoothMouse.y = smoothMouse.y * 0.92 + mouse.y * 0.08;
+        uniforms.mousePos.value = [smoothMouse.x, smoothMouse.y];
+      }
+      try {
+        renderer.render({ scene: mesh });
+        animId = requestAnimationFrame(loop);
+      } catch (e) {
+        console.warn('LightRays error:', e);
+      }
+    };
+
+    window.addEventListener('resize', updatePlacement);
+    updatePlacement();
+    animId = requestAnimationFrame(loop);
+
+    document.addEventListener('mousemove', e => {
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      mouse.x = (e.clientX - rect.left) / rect.width;
+      mouse.y = (e.clientY - rect.top) / rect.height;
+    });
+  </script>
 </body>
+
 </html>

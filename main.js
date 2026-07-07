@@ -105,4 +105,21 @@
   window.addEventListener('resize', updateProgress);
   updateProgress();
 
+  /* -------------------------------------------------------------
+     Cover word carousel — infinite loop, fade in/out
+     ------------------------------------------------------------- */
+
+  var carouselWords = document.querySelectorAll('.cover__word');
+  if (carouselWords.length > 1 && !reduceMotion) {
+    var wordIdx = 0;
+    carouselWords[wordIdx].classList.add('is-active');
+    setInterval(function () {
+      carouselWords[wordIdx].classList.remove('is-active');
+      wordIdx = (wordIdx + 1) % carouselWords.length;
+      carouselWords[wordIdx].classList.add('is-active');
+    }, 2200);
+  } else if (carouselWords.length > 0) {
+    carouselWords[0].classList.add('is-active');
+  }
+
 })();
