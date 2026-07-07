@@ -7,7 +7,7 @@
 (() => {
   'use strict';
 
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches) return;
 
   // ---------- Configuração (ajuste à vontade) ----------
   const CONFIG = {
@@ -27,8 +27,8 @@
   Object.assign(canvas.style, {
     position: 'fixed',
     inset: '0',
-    width: '100vw',
-    height: '100vh',
+    width: '100%',
+    height: '100%',
     pointerEvents: 'none',
     zIndex: '2147483647',
     mixBlendMode: 'screen', // funde bonito sobre fundos escuros; troque p/ 'normal' se preferir

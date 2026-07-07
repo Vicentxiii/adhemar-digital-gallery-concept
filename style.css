@@ -54,6 +54,7 @@ html {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -64,6 +65,10 @@ body {
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+main {
   overflow-x: hidden;
 }
 
@@ -403,15 +408,10 @@ p {
 
 .cover-marquee {
   margin-top: calc(2rem + 30px);
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
 
 .cover-marquee__track {
@@ -1399,6 +1399,25 @@ p {
 
   .swatches {
     gap: 1.5rem;
+  }
+
+  .closing {
+    white-space: normal;
+  }
+
+  .keywords-loop {
+    padding-left: var(--edge);
+    padding-right: var(--edge);
+  }
+}
+
+@media (pointer: coarse) {
+  #fluid-cursor-canvas {
+    display: none !important;
+  }
+
+  html {
+    cursor: auto !important;
   }
 }
 
