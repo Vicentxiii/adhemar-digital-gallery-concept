@@ -1,0 +1,738 @@
+/* ================================================================
+   ADHEMAR CABRAL — CREATIVE DIRECTION PROPOSAL
+   A digital concept book. Vanilla CSS, no framework.
+   ================================================================ */
+
+:root {
+  --black: #0B0B0C;
+  --white: #F4F2EE;
+  --gray-mid: #9A9A9A;
+  --gray-light: #D7D7D7;
+  --gold: #B08D57;
+
+  --serif: 'Fraunces', 'Georgia', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --edge: clamp(1.5rem, 6vw, 6rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------------------------------------------------------
+   Reset
+   --------------------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ol, ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+*:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* ---------------------------------------------------------------
+   Preloader — the book's cover closing before it opens
+   --------------------------------------------------------------- */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1.1s var(--ease), visibility 1.1s var(--ease);
+}
+
+.preloader__mark {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  color: var(--gray-mid);
+  opacity: 0;
+  animation: mark-in 1.2s var(--ease) forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes mark-in {
+  to { opacity: 1; }
+}
+
+.preloader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------
+   Chapter rail — the spine of the book / the gallery directory
+   --------------------------------------------------------------- */
+
+.rail {
+  position: fixed;
+  right: var(--edge);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+}
+
+.rail__track {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--gray-light);
+  opacity: 0.15;
+}
+
+.rail__list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.rail__list a {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 0.15rem 0.3rem;
+}
+
+.rail__num {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: var(--gray-mid);
+  opacity: 0.45;
+  transition: opacity 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+.rail__list a:hover .rail__num,
+.rail__list a:focus-visible .rail__num {
+  opacity: 1;
+  color: var(--gold);
+}
+
+.rail__list a.is-active .rail__num {
+  opacity: 1;
+  color: var(--gold);
+}
+
+/* ---------------------------------------------------------------
+   Top progress line — mobile substitute for the rail
+   --------------------------------------------------------------- */
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(215, 215, 215, 0.12);
+  z-index: 30;
+}
+
+.progress__fill {
+  height: 100%;
+  width: 0%;
+  background: var(--gold);
+  transition: width 0.1s linear;
+}
+
+/* ---------------------------------------------------------------
+   Chapter — shared frame
+   --------------------------------------------------------------- */
+
+.chapter {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 12vh var(--edge);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 1.5rem;
+}
+
+.heading {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  line-height: 1.15;
+  color: var(--white);
+  margin: 0;
+}
+
+.section-head {
+  max-width: 900px;
+  margin-bottom: clamp(3rem, 8vh, 6rem);
+}
+
+.section-sub {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: var(--gray-mid);
+}
+
+/* ---------------------------------------------------------------
+   Scroll-triggered reveal (IntersectionObserver adds .is-visible)
+   --------------------------------------------------------------- */
+
+.reveal-io {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.1s var(--ease), transform 1.1s var(--ease);
+}
+
+.reveal-io.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children within a revealed group */
+.vision__body p:nth-child(1) { transition-delay: 0.05s; }
+.vision__body p:nth-child(2) { transition-delay: 0.2s; }
+.vision__body p:nth-child(3) { transition-delay: 0.35s; }
+
+/* ---------------------------------------------------------------
+   Load-time reveal (used only on the opening cover)
+   --------------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: reveal-in 1.2s var(--ease) forwards;
+  animation-delay: calc(var(--d) * 0.3s + 0.4s);
+}
+
+@keyframes reveal-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================================
+   I — COVER
+   ================================================================ */
+
+.chapter--cover {
+  align-items: center;
+  text-align: center;
+}
+
+.cover__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 1.75rem;
+}
+
+.cover__name {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 11vw, 8rem);
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.cover__line {
+  margin-top: 2rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--gray-light);
+  max-width: 30ch;
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 6vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.scroll-cue span {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+}
+
+.scroll-cue__line {
+  width: 1px;
+  height: 30px;
+  background: var(--gray-light);
+  opacity: 0.4;
+  animation: breathe 3.6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.15; height: 22px; }
+  50% { opacity: 0.55; height: 34px; }
+}
+
+/* ================================================================
+   II — MANIFESTO
+   ================================================================ */
+
+.chapter--manifesto {
+  align-items: center;
+  text-align: center;
+}
+
+.manifesto {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.6rem, 4.5vw, 3rem);
+  line-height: 1.4;
+  color: var(--white);
+  max-width: 16ch;
+}
+
+/* ================================================================
+   III — THE VISION
+   ================================================================ */
+
+.chapter--vision {
+  align-items: flex-start;
+}
+
+.vision {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.vision__body {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-bottom: clamp(3rem, 8vh, 5rem);
+}
+
+.vision__body p {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  line-height: 1.7;
+  color: var(--gray-light);
+}
+
+.vision__words {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.75rem;
+  row-gap: 0.9rem;
+}
+
+.vision__words li {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  position: relative;
+  padding-right: 1.75rem;
+}
+
+.vision__words li::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 1px;
+  background: var(--gray-light);
+  opacity: 0.4;
+}
+
+.vision__words li:last-child::after {
+  display: none;
+}
+
+/* ================================================================
+   IV — MOODBOARD
+   ================================================================ */
+
+.moodboard {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+.plate {
+  margin: 0;
+  border: 1px solid rgba(215, 215, 215, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.plate figcaption {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+}
+
+.plate--a { grid-column: 1 / 8;  aspect-ratio: 16 / 10; background: linear-gradient(155deg, #17171a, #0B0B0C 60%); }
+.plate--b { grid-column: 8 / 13; aspect-ratio: 3 / 4;   background: linear-gradient(200deg, #131315, #0B0B0C 65%); }
+.plate--c { grid-column: 1 / 5;  aspect-ratio: 3 / 4;   background: linear-gradient(120deg, #141416, #0B0B0C 60%); }
+.plate--d { grid-column: 5 / 13; aspect-ratio: 21 / 9;  background: linear-gradient(165deg, #19191c, #0B0B0C 55%); }
+.plate--e { grid-column: 1 / 6;  aspect-ratio: 4 / 3;   background: linear-gradient(210deg, #121214, #0B0B0C 60%); }
+.plate--f { grid-column: 6 / 13; aspect-ratio: 16 / 9;  background: linear-gradient(140deg, #161618, #0B0B0C 60%); }
+
+/* ================================================================
+   V — VISUAL LANGUAGE
+   ================================================================ */
+
+.language-block {
+  max-width: 900px;
+  padding: clamp(2rem, 5vh, 3rem) 0;
+  border-top: 1px solid rgba(215, 215, 215, 0.15);
+}
+
+.language-block:first-of-type {
+  border-top: none;
+}
+
+.language-block__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 1.5rem;
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.swatch__chip {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+}
+
+.swatch__hex {
+  font-size: 0.8rem;
+  color: var(--gray-light);
+  font-family: var(--sans);
+}
+
+.swatch__name {
+  font-size: 0.72rem;
+  color: var(--gray-mid);
+}
+
+.specimen {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  line-height: 1;
+  margin: 0.5rem 0 0.75rem;
+  color: var(--white);
+}
+
+.specimen--sans {
+  font-family: var(--sans);
+}
+
+.specimen-caption {
+  font-size: 0.85rem;
+  color: var(--gray-mid);
+  max-width: 52ch;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.specimen-caption:last-child {
+  margin-bottom: 0;
+}
+
+.spacing-scale {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 8px;
+  margin: 1rem 0 1.5rem;
+}
+
+.spacing-bar {
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+/* ================================================================
+   VI — USER JOURNEY
+   ================================================================ */
+
+.journey {
+  max-width: 760px;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.journey::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.4em;
+  bottom: 0.4em;
+  width: 1px;
+  background: rgba(215, 215, 215, 0.18);
+}
+
+.journey__step {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 0 1.5rem;
+  padding-bottom: clamp(2rem, 4vh, 2.75rem);
+  position: relative;
+}
+
+.journey__step:last-child {
+  padding-bottom: 0;
+}
+
+.journey__mark {
+  position: absolute;
+  left: -2.5rem;
+  font-size: 0.7rem;
+  color: var(--gray-mid);
+  letter-spacing: 0.05em;
+}
+
+.journey__title {
+  grid-column: 2;
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+
+.journey__desc {
+  grid-column: 2;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--gray-mid);
+  max-width: 48ch;
+}
+
+/* ================================================================
+   VII — WIREFRAME CONCEPTS
+   ================================================================ */
+
+.wireframes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 1200px;
+}
+
+.wireframe {
+  margin: 0;
+}
+
+.wireframe__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wireframe figcaption {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: var(--gray-mid);
+  letter-spacing: 0.02em;
+}
+
+/* ================================================================
+   VIII — CREATIVE PRINCIPLES
+   ================================================================ */
+
+.chapter--principles {
+  align-items: center;
+  text-align: center;
+  gap: clamp(2.5rem, 6vh, 4rem);
+}
+
+.principle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  color: var(--white);
+}
+
+/* ================================================================
+   IX — NEXT STEPS
+   ================================================================ */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  max-width: 760px;
+}
+
+.timeline__step {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  align-items: baseline;
+  gap: 0 1.5rem;
+  padding: clamp(1.25rem, 3vh, 1.75rem) 0;
+  border-top: 1px solid rgba(215, 215, 215, 0.15);
+}
+
+.timeline__step:last-child {
+  border-bottom: 1px solid rgba(215, 215, 215, 0.15);
+}
+
+.timeline__num {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+
+.timeline__title {
+  grid-column: 2;
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: var(--white);
+}
+
+.timeline__desc {
+  grid-column: 2;
+  margin-top: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--gray-mid);
+  max-width: 48ch;
+}
+
+/* ================================================================
+   X — CLOSING
+   ================================================================ */
+
+.chapter--closing {
+  align-items: center;
+  text-align: center;
+}
+
+.closing {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: var(--white);
+}
+
+.closing__sign {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+}
+
+/* ---------------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .reveal-io {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .scroll-cue__line { animation: none; opacity: 0.4; }
+  .preloader { display: none; }
+}
+
+/* ---------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .rail { display: none; }
+  .progress { display: block; }
+
+  .vision__body { max-width: 100%; }
+
+  .moodboard {
+    grid-template-columns: 1fr;
+  }
+  .plate--a, .plate--b, .plate--c, .plate--d, .plate--e, .plate--f {
+    grid-column: 1 / -1;
+    aspect-ratio: 4 / 3;
+  }
+
+  .journey { padding-left: 2rem; }
+  .journey__step { grid-template-columns: 2rem 1fr; }
+  .journey__mark { left: -2rem; }
+}
+
+@media (min-width: 901px) {
+  .progress { display: none; }
+}
+
+@media (max-width: 480px) {
+  .chapter { padding: 9vh var(--edge); }
+  .cover__name { letter-spacing: 0; }
+  .swatches { gap: 1.5rem; }
+}
