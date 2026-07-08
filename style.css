@@ -1461,6 +1461,10 @@ p {
     margin-top: 0;
   }
 
+  .cover__credit {
+    font-size: clamp(0.3rem, 0.55vw, 0.45rem);
+  }
+
   .vision__body {
     gap: 0.25rem;
     margin-bottom: 0.6rem;
@@ -1633,7 +1637,7 @@ p {
    --------------------------------------------------------------- */
 @media (max-width: 480px) {
   .chapter--cover {
-    min-height: 130dvh;
+    min-height: auto;
     padding-top: calc(6vh + 70px);
     justify-content: flex-start;
   }
@@ -1676,5 +1680,13 @@ p {
 
   .vision__words li::after {
     right: -2.5rem;
+  }
+
+  .chapter {
+    padding-top: calc(6vh + 50px);
+  }
+
+  .chapter--vision {
+    padding-top: 50px;
   }
 }
