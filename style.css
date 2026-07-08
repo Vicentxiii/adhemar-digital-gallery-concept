@@ -1428,6 +1428,13 @@ p {
 }
 
 @media (max-width: 480px) {
+  .reveal,
+  .reveal-io {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
   .chapter {
     padding: 4vh var(--edge);
   }
@@ -1476,7 +1483,7 @@ p {
   }
 
   .global-presence__inner {
-    gap: 0.2rem;
+    gap: 1.5rem;
   }
 
   .global-presence__title {
